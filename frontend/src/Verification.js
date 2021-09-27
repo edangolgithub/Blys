@@ -19,7 +19,7 @@ export class Verification extends Component {
     };
     this.verify = this.verify.bind(this);
     this.inputCompleted = this.inputCompleted.bind(this);
-    this.inputchanged = this.inputchanged.bind(this);
+    this.inputChanged = this.inputChanged.bind(this);
   }
   async verify(e) {
     e.preventDefault();
@@ -34,7 +34,7 @@ export class Verification extends Component {
       this.props.history.push("/success");
     }
   }
-  inputchanged(char) {
+  inputChanged(char) {
     if (!this.isCharNumber(char)) {
     }
   }
@@ -51,7 +51,7 @@ export class Verification extends Component {
             placeholder={["3", "2", "1", "4", "2", "0"]}
             className="validation-box"
             onComplete={this.inputCompleted}
-            onChange={this.inputchanged}
+            onChange={this.inputChanged}
           />
          {
          this.state.verifying ? (
