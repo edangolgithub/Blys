@@ -14,21 +14,21 @@ export class Verification extends Component {
     super(props);
     this.state = {
       data: "",
-      verificationerror: false,
+      verificationError: false,
       verifying:false
     };
     this.verify = this.verify.bind(this);
-    this.inputcompleted = this.inputcompleted.bind(this);
+    this.inputCompleted = this.inputCompleted.bind(this);
     this.inputchanged = this.inputchanged.bind(this);
   }
   async verify(e) {
     e.preventDefault();
     this.setState({verifying:true})
-    this.setState({ verificationerror: false });
+    this.setState({ verificationError: false });
     const reply = await sendVerificationRequest(this.state.data);
 
     if (reply !== "ok") {
-      this.setState({ verificationerror: true });
+      this.setState({ verificationError: true });
       this.setState({verifying:false})
     } else {
       this.props.history.push("/success");
@@ -38,7 +38,7 @@ export class Verification extends Component {
     if (!this.isCharNumber(char)) {
     }
   }
-  inputcompleted(e) {
+  inputCompleted(e) {
     this.setState({ data: e });
   }
 
@@ -50,7 +50,7 @@ export class Verification extends Component {
           <ReactCodeInput
             placeholder={["3", "2", "1", "4", "2", "0"]}
             className="validation-box"
-            onComplete={this.inputcompleted}
+            onComplete={this.inputCompleted}
             onChange={this.inputchanged}
           />
          {
@@ -59,7 +59,7 @@ export class Verification extends Component {
          }
         </div>
         <div>
-          {this.state.verificationerror === true ? <Error /> : <span></span>}
+          {this.state.verificationError === true ? <Error /> : <span></span>}
         </div>
       </div>
     );
